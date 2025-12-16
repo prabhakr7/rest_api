@@ -35,7 +35,7 @@ def db_check():
         # Convert rows to list of dictionaries
         data = [dict(zip(columns, row)) for row in rows]
 
-    conn.close()
+    # conn.close()
     return jsonify(data)
 
 @app.route("/update-salary", methods=["POST"])
@@ -81,7 +81,8 @@ def update_salary():
         return jsonify({"error": str(e)}), 500
 
     finally:
-        conn.close()
+        pass
+        # conn.close()
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=3000)
