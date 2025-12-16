@@ -28,7 +28,7 @@ def health():
 @app.route("/db-check")
 def db_check():
     with conn.cursor() as cur:
-        cur.execute("SELECT * FROM EBA_DEMO_CARD_EMP")
+        cur.execute("SELECT * FROM WKSP_HELLO.EBA_DEMO_CARD_EMP")
         columns = [col[0] for col in cur.description]  # get column names
         rows = cur.fetchall()  # fetch all rows
 
