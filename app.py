@@ -18,12 +18,25 @@ conn=oracledb.connect(
 def health():
     return "Flask + Oracle ADB (TLS) is running ✅"
 
+# @app.route("/db-check")
+# def db_check():
+#     with conn.cursor() as cur:
+#         cur.execute("select sysdate from dual")
+#         row = cur.fetchone()
+#     return jsonify({"sysdate": str(row[0])})
+
 @app.route("/db-check")
 def db_check():
     with conn.cursor() as cur:
-        cur.execute("select sysdate from dual")
-        row = cur.fetchone()
-    return jsonify({"sysdate": str(row[0])})
+        cur.execute("SELECT * FROM EBA_DEMO_CARD_EMP")
+        columns = [col[0] for col in cur.description]  # get column names
+        rows = cur.fetchall()  # fetch all rows
+
+        # Convert rows to list of dictionaries
+        data = [dict(zip(columns, row)) for row in rows]
+
+    conn.close()
+    return jsonify(data)
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=3000)
