@@ -38,6 +38,51 @@ def db_check():
     conn.close()
     return jsonify(data)
 
+@app.route("/update-salary", methods=["POST"])
+def update_salary():
+    # Get JSON data from request body
+    data = request.get_json()
+    
+    if not data or "empno" not in data or "percent" not in data:
+        return jsonify({"error": " 'empno' and 'percent_increase' are required"}), 400
+    
+    empno = data["empno"]
+    salary_percent = data["percent"]
+
+    try:
+        with conn.cursor() as cur:
+            # Example: Fetch current salary from DB
+            cur.execute("SELECT SAL FROM WKSP_HELLO.EBA_DEMO_CARD_EMP WHERE EMPNO = :empno", [empno])
+            row = cur.fetchone()
+            if not row:
+                return jsonify({"error": f"Employee {empno} not found"}), 404
+
+            current_salary = row[0]
+
+            # Calculate new salary
+            new_salary = current_salary * (1 + salary_percent / 100)
+
+            # Example: Update salary in DB (optional)
+            cur.execute(
+                "UPDATE WKSP_HELLO.EBA_DEMO_CARD_EMP SET SAL = :new_sal WHERE EMPNO = :empno",
+                [new_salary, empno]
+            )
+            conn.commit()
+
+        result = {
+            "empno": empno,
+            "old_salary": current_salary,
+            "salary_percent_increase": salary_percent,
+            "new_salary": new_salary
+        }
+        return jsonify(result)
+    
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+
+    finally:
+        conn.close()
+
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=3000)
 
