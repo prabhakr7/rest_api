@@ -1,0 +1,12 @@
+pyapex_high = (description= (retry_count=20)(retry_delay=3)(address=(protocol=tcps)(port=1522)(host=adb.ap-mumbai-1.oraclecloud.com))(connect_data=(service_name=g2528f9311cb5d2_pyapex_high.adb.oraclecloud.com))(security=(ssl_server_dn_match=yes)))
+
+pyapex_low = (description= (retry_count=20)(retry_delay=3)(address=(protocol=tcps)(port=1522)(host=adb.ap-mumbai-1.oraclecloud.com))(connect_data=(service_name=g2528f9311cb5d2_pyapex_low.adb.oraclecloud.com))(security=(ssl_server_dn_match=yes)))
+
+pyapex_medium = (description= (retry_count=20)(retry_delay=3)(address=(protocol=tcps)(port=1522)(host=adb.ap-mumbai-1.oraclecloud.com))(connect_data=(service_name=g2528f9311cb5d2_pyapex_medium.adb.oraclecloud.com))(security=(ssl_server_dn_match=yes)))
+
+pyapex_tp = (description= (retry_count=20)(retry_delay=3)(address=(protocol=tcps)(port=1522)(host=adb.ap-mumbai-1.oraclecloud.com))(connect_data=(service_name=g2528f9311cb5d2_pyapex_tp.adb.oraclecloud.com))(security=(ssl_server_dn_match=yes)))
+
+pyapex_tpurgent = (description= (retry_count=20)(retry_delay=3)(address=(protocol=tcps)(port=1522)(host=adb.ap-mumbai-1.oraclecloud.com))(connect_data=(service_name=g2528f9311cb5d2_pyapex_tpurgent.adb.oraclecloud.com))(security=(ssl_server_dn_match=yes)))
+
+
+
